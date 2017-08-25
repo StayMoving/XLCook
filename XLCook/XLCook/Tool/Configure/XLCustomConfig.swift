@@ -19,7 +19,7 @@ let NavBar_h :CGFloat = 64.0
 
 let XLWindow = UIApplication.shared.keyWindow
 
-
+let XLSearch_historyPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as NSString
 
 
 

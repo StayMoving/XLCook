@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59763EB91F2607300020CF50 /* XLSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EB81F2607300020CF50 /* XLSearchTextField.swift */; };
+		59763EBB1F26EB720020CF50 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EBA1F26EB720020CF50 /* UIImage+Color.swift */; };
+		59763EBD1F26F1BD0020CF50 /* NSString+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EBC1F26F1BD0020CF50 /* NSString+Float.swift */; };
 		59A276B21F1E476E009534F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A276B01F1E476E009534F4 /* Main.storyboard */; };
 		59A276B41F1E476E009534F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59A276B31F1E476E009534F4 /* Assets.xcassets */; };
 		59A276B71F1E476E009534F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A276B51F1E476E009534F4 /* LaunchScreen.storyboard */; };
@@ -24,11 +27,15 @@
 		59A276FD1F1EEB6C009534F4 /* XLCollectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276FC1F1EEB6C009534F4 /* XLCollectController.swift */; };
 		59A276FF1F1EEB7F009534F4 /* XLMsgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276FE1F1EEB7F009534F4 /* XLMsgController.swift */; };
 		59A277011F1EEB8D009534F4 /* XLMineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A277001F1EEB8D009534F4 /* XLMineController.swift */; };
+		59A2772B1F21D7D6009534F4 /* XLSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A2772A1F21D7D6009534F4 /* XLSearchViewController.swift */; };
 		DE142E56BB3AEBCAB4678AC7 /* Pods_XLCook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73514EF037A7D06D7DEF7E2E /* Pods_XLCook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		448E7A559904B73578A1D5CB /* Pods-XLCook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLCook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XLCook/Pods-XLCook.debug.xcconfig"; sourceTree = "<group>"; };
+		59763EB81F2607300020CF50 /* XLSearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLSearchTextField.swift; sourceTree = "<group>"; };
+		59763EBA1F26EB720020CF50 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		59763EBC1F26F1BD0020CF50 /* NSString+Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Float.swift"; sourceTree = "<group>"; };
 		59A276A91F1E476E009534F4 /* XLCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A276B11F1E476E009534F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		59A276B31F1E476E009534F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +56,8 @@
 		59A276FC1F1EEB6C009534F4 /* XLCollectController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLCollectController.swift; sourceTree = "<group>"; };
 		59A276FE1F1EEB7F009534F4 /* XLMsgController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLMsgController.swift; sourceTree = "<group>"; };
 		59A277001F1EEB8D009534F4 /* XLMineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLMineController.swift; sourceTree = "<group>"; };
+		59A277201F1F645E009534F4 /* XLCook_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLCook_Bridging_Header.h; sourceTree = "<group>"; };
+		59A2772A1F21D7D6009534F4 /* XLSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLSearchViewController.swift; sourceTree = "<group>"; };
 		73514EF037A7D06D7DEF7E2E /* Pods_XLCook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XLCook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C72B366B56682E613239F2 /* Pods-XLCook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLCook.release.xcconfig"; path = "Pods/Target Support Files/Pods-XLCook/Pods-XLCook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				59A276C61F1EE50A009534F4 /* UIView+Frame.swift */,
+				59763EBA1F26EB720020CF50 /* UIImage+Color.swift */,
+				59763EBC1F26F1BD0020CF50 /* NSString+Float.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -135,6 +146,7 @@
 		59A276CB1F1EE50A009534F4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				59A277291F21D792009534F4 /* XLSearch */,
 				59A276DC1F1EE5C2009534F4 /* XLNavigationBarView.swift */,
 			);
 			path = Util;
@@ -164,6 +176,7 @@
 		59A276DB1F1EE54E009534F4 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				59A277201F1F645E009534F4 /* XLCook_Bridging_Header.h */,
 				59A276B01F1E476E009534F4 /* Main.storyboard */,
 				59A276F71F1EE930009534F4 /* PrefixHeader.pch */,
 				59A276B31F1E476E009534F4 /* Assets.xcassets */,
@@ -373,6 +386,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		59A277291F21D792009534F4 /* XLSearch */ = {
+			isa = PBXGroup;
+			children = (
+				59763EB81F2607300020CF50 /* XLSearchTextField.swift */,
+				59A2772A1F21D7D6009534F4 /* XLSearchViewController.swift */,
+			);
+			path = XLSearch;
+			sourceTree = "<group>";
+		};
 		70FAFBB00215B460EEE9013F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,20 +537,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59763EBD1F26F1BD0020CF50 /* NSString+Float.swift in Sources */,
 				59A276D41F1EE50A009534F4 /* XLServerConfig.swift in Sources */,
 				59A276D31F1EE50A009534F4 /* XLCustomConfig.swift in Sources */,
 				59A276D21F1EE50A009534F4 /* XLColorConfig.swift in Sources */,
 				59A276F51F1EE8AE009534F4 /* XLBasicViewController.swift in Sources */,
 				59A276D11F1EE50A009534F4 /* UIView+Frame.swift in Sources */,
+				59763EB91F2607300020CF50 /* XLSearchTextField.swift in Sources */,
 				59A276F91F1EEB28009534F4 /* XLCookController.swift in Sources */,
 				59A277011F1EEB8D009534F4 /* XLMineController.swift in Sources */,
 				59A276FD1F1EEB6C009534F4 /* XLCollectController.swift in Sources */,
 				59A276CE1F1EE50A009534F4 /* ViewController.swift in Sources */,
 				59A276CD1F1EE50A009534F4 /* AppDelegate.swift in Sources */,
 				59A276FF1F1EEB7F009534F4 /* XLMsgController.swift in Sources */,
+				59A2772B1F21D7D6009534F4 /* XLSearchViewController.swift in Sources */,
 				59A276DD1F1EE5C2009534F4 /* XLNavigationBarView.swift in Sources */,
 				59A276F61F1EE8AE009534F4 /* XLTabBarController.swift in Sources */,
 				59A276FB1F1EEB4F009534F4 /* XLFairController.swift in Sources */,
+				59763EBB1F26EB720020CF50 /* UIImage+Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +686,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolf.www.XLCook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = XLCook/XLCook_Bridging_Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -677,6 +704,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolf.www.XLCook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = XLCook/XLCook_Bridging_Header.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

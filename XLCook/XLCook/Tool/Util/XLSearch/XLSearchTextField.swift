@@ -9,50 +9,26 @@
 import UIKit
 
 
-
-@objc protocol XLSearchBarDelegate : class{
-    @available(iOS 2.0, *)
-    
-    func xlSearcbTextFieldShouldBeginEditing(_ textField: UITextField) -> Bool // return NO to disallow editing.
-    
-    @available(iOS 2.0, *)
-    func xlSearcbTextFieldDidBeginEditing(_ textField: UITextField) // became first responder
-    
-    @available(iOS 2.0, *)
-    func xlSearcbTextFieldShouldEndEditing(_ textField: UITextField) -> Bool // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-    
-    @available(iOS 2.0, *)
-    func xlSearcbTextFieldDidEndEditing(_ textField: UITextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-    
-    @available(iOS 10.0, *)
-    func xlSearcbTextFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) // if implemented, called in place of textFieldDidEndEditing:
-    
-    
-    @available(iOS 2.0, *)
-    func xlSearcbTextField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool // return NO to not change text
-    
-    
-    @available(iOS 2.0, *)
-    func xlSearcbTextFieldShouldClear(_ textField: UITextField) -> Bool // called when clear button pressed. return NO to ignore (no notifications)
-    
-    @available(iOS 2.0, *)
-    func xlSearcbTextFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
-
-}
-
 class XLSearchTextField: UITextField ,UITextFieldDelegate{
-    
-    weak var xlSearchDelegate : XLSearchBarDelegate?
     
     weak var searchInputView = UIView()
     
     weak var searchImg = UIImageView()
     
+    var searchPlaceHoldW :CGFloat = 0.0
+    
+    var inputW :CGFloat = 24
+    var imgSearchW :CGFloat = 12
+    var imageSpace :CGFloat = 2
     
     
-    var searchPlacehold = "" {
+    var searchPlacehold :NSString = "" {
         didSet{
-            self.placeholder = searchPlacehold
+            self.placeholder = searchPlacehold as String
+            self.searchPlaceHoldW = min(NSString.getStringSizeWidth(searchPlacehold, font: UIFont.systemFont(ofSize: 17), maxheigh: 24), self.width - inputW * 2)
+            //self.becomeFirstResponder()
+            //self.hiddenSearchAnimation()
+            self.keyboardWillShow()
         }
     }
     
@@ -74,15 +50,14 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
         }
     }
     
-    
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.delegate = self
-        self.hiddenSearchAnimation()
-        
-        
+        self.layer.cornerRadius = 3
+        self.clipsToBounds = true
+        self.backgroundColor = XLLightGray_Color()
+        self.tintColor = XLSystemOrange_Color()
     }
     
     //************************监听事件************************
@@ -100,77 +75,44 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
     
     func keyboardWillHide() -> Void {
         UIView.animate(withDuration: 4) {
-            self.hiddenSearchAnimation()
+        self.hiddenSearchAnimation()
         }
     }
     
     //************************动态事件************************
     func searchAnimation() -> Void {
-        let inputView = UIView.init(frame: CGRect (x: 0, y: 0, width: 24, height: 24))
+        let inputView = UIView.init(frame: CGRect (x: 0, y: 0, width: inputW, height: inputW))
         self.searchInputView = inputView
         
-        let imgSearch = UIImageView.init(frame: CGRect(x: 12, y: (inputView.cl_width - 12)/2, width: 12, height: 12))
-        imgSearch.image = #imageLiteral(resourceName: "search")
+        let imgSearch = UIImageView.init(frame: CGRect(x: inputW - imgSearchW - imageSpace, y: (inputW - imgSearchW)/2, width: imgSearchW, height: imgSearchW))
+        imgSearch.image = UIImage (named: "search")
         self.searchImg = imgSearch
         
-        self.inputView?.addSubview(self.searchImg!)
+        self.searchInputView?.addSubview(self.searchImg!)
         
-        self.leftView = self.inputView
+        self.leftView = self.searchInputView
+        self.leftViewMode = .always
         
     }
     
     func hiddenSearchAnimation() -> Void {
-        let inputView = UIView.init(frame: CGRect (x: 0, y: 0, width: self.cl_width/2 - 30, height: 24))
+        let inputView = UIView.init(frame: CGRect (x: 0, y: 0, width: (self.width - self.searchPlaceHoldW)/2, height: inputW))
         self.searchInputView = inputView
         
-        let imgSearch = UIImageView.init(frame: CGRect(x: self.cl_width/2 - 30 - 12, y: (inputView.cl_width - 12)/2, width: 12, height: 12))
-        imgSearch.image = #imageLiteral(resourceName: "search")
+        let imgSearch = UIImageView.init(frame: CGRect(x: (self.width - self.searchPlaceHoldW)/2 - imgSearchW * 3/2, y: (inputW - imgSearchW)/2, width: imgSearchW, height: imgSearchW))
+        imgSearch.image = UIImage (named: "search")
         self.searchImg = imgSearch
         
-        self.inputView?.addSubview(self.searchImg!)
+        self.searchInputView?.addSubview(self.searchImg!)
         
-        self.leftView = self.inputView
+        self.leftView = self.searchInputView
+        self.leftViewMode = .always
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return  (xlSearchDelegate?.xlSearcbTextFieldShouldBeginEditing(textField) != nil)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        xlSearchDelegate?.xlSearcbTextFieldDidBeginEditing(textField)
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        return  (xlSearchDelegate?.xlSearcbTextFieldShouldEndEditing(textField))!
-    }
-    
-    @available(iOS 10.0, *)
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-        
-        xlSearchDelegate?.xlSearcbTextFieldDidEndEditing(textField, reason: reason)
-        
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        xlSearchDelegate?.xlSearcbTextFieldDidEndEditing(textField)
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return (((xlSearchDelegate?.xlSearcbTextField(_:shouldChangeCharactersIn:replacementString:)) != nil))
-    }
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        return (xlSearchDelegate?.xlSearcbTextFieldShouldClear(_:) != nil)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return(xlSearchDelegate?.xlSearcbTextFieldShouldReturn(_:) != nil)
-    }
+
     
 
 }

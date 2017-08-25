@@ -1,20 +1,19 @@
 //
-//  XLCollectController.swift
+//  XLNavigationController.swift
 //  XLCook
 //
-//  Created by Beyondream on 2017/7/19.
+//  Created by Beyondream on 2017/8/25.
 //  Copyright © 2017年 Beyondream. All rights reserved.
 //
 
 import UIKit
 
-class XLCollectController: XLBasicViewController {
+class XLNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchTF.isHidden = true
-        self.navTitle = "收藏"
-        
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

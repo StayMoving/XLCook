@@ -23,10 +23,15 @@ func XLSystemOrange_Color() -> UIColor
 }
 
 //系统内灰色
-
 func XLSystemGray_Color() -> UIColor {
     return colorWithRGB(0x494A45);
 }
+
+func XLLightGray_Color() -> UIColor {
+    return colorWithRGB(0xECECE9);
+}
+
+
 
 
 func colorWithRGB(_ rgbValue:NSInteger) -> UIColor {

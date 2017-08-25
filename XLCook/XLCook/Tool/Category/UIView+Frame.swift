@@ -28,7 +28,7 @@ extension UIView {
 //    }
     
     /// x
-    var cl_x: CGFloat {
+    var x: CGFloat {
         get {
             return frame.origin.x
         }
@@ -40,7 +40,7 @@ extension UIView {
     }
     
     /// y
-    var cl_y: CGFloat {
+    var y: CGFloat {
         get {
             return frame.origin.y
         }
@@ -52,7 +52,7 @@ extension UIView {
     }
     
     /// height
-    var cl_height: CGFloat {
+    var height: CGFloat {
         get {
             return frame.size.height
         }
@@ -64,7 +64,7 @@ extension UIView {
     }
     
     /// width
-    var cl_width: CGFloat {
+    var width: CGFloat {
         get {
             return frame.size.width
         }
@@ -76,7 +76,7 @@ extension UIView {
     }
     
     /// size
-    var cl_size: CGSize {
+    var size: CGSize {
         get {
             return frame.size
         }
@@ -88,7 +88,7 @@ extension UIView {
     }
     
     /// centerX
-    var cl_centerX: CGFloat {
+    var centerX: CGFloat {
         get {
             return center.x
         }
@@ -100,7 +100,7 @@ extension UIView {
     }
     
     /// centerY
-    var cl_centerY: CGFloat {
+    var centerY: CGFloat {
         get {
             return center.y
         }
@@ -110,5 +110,34 @@ extension UIView {
             center = tempCenter;
         }
     }
+    
+    var maxX :CGFloat {
+    
+        get{
+          return frame.origin.x + frame.size.width
+        }
+        set(newValue){
+            var tempFrame: CGRect = frame
+            tempFrame.origin.x    = newValue - frame.size.width
+            frame                 = tempFrame
+            
+        }
+    
+    }
+    
+    var maxY :CGFloat {
+        
+        get{
+            return frame.origin.y + frame.size.height
+        }
+        set(newValue){
+            var tempFrame: CGRect = frame
+            tempFrame.origin.y    = newValue - frame.size.height
+            frame                 = tempFrame
+            
+        }
+        
+    }
+    
     
 }

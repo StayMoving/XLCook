@@ -12,7 +12,7 @@ class XLMineController: XLBasicViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.searchTF.isHidden = true
         self.navTitle = "我"
     }
 
