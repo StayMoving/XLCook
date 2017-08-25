@@ -12,6 +12,8 @@ class XLBasicViewController: UIViewController ,UITextFieldDelegate {
     
     var leftBtn = UIButton()
     var rightBtn = UIButton()
+    var searchTF = XLSearchTextField()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +57,9 @@ class XLBasicViewController: UIViewController ,UITextFieldDelegate {
         searchBar.delegate = self
         searchBar.font = UIFont.systemFont(ofSize: 17);
         searchBar.resignFirstResponder()
-        searchBar.hiddenSearchAnimation()
         searchBar.backgroundColor = XLLightGray_Color()
         navBarView.addSubview(searchBar)
+        self.searchTF = searchBar
         return navBarView
         
     }()

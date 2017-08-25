@@ -27,9 +27,7 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
         didSet{
             self.placeholder = searchPlacehold as String
             self.searchPlaceHoldW = min(NSString.getStringSizeWidth(searchPlacehold, font: UIFont.systemFont(ofSize: 17), maxheigh: 24), self.width - inputW * 2)
-            self.becomeFirstResponder()
             self.hiddenSearchAnimation()
-            self.keyboardWillShow()
         }
     }
 
@@ -60,12 +58,8 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
         self.clipsToBounds = true
         self.backgroundColor = XLLightGray_Color()
         self.tintColor = XLSystemOrange_Color()
-        
-//        self.placeholder = searchPlacehold as String
-       // self.searchPlaceHoldW = min(NSString.getStringSizeWidth(searchPlacehold, font: UIFont.systemFont(ofSize: 17), maxheigh: 24), self.width - inputW * 2)
-        //self.becomeFirstResponder()
-        //self.hiddenSearchAnimation()
-        self.keyboardWillShow()
+        self.addNotification()
+
     }
     deinit {
         NotificationCenter.default.removeObserver(self)

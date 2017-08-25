@@ -13,6 +13,8 @@ class XLFairController: XLBasicViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = navBarView
+        self.searchTF.searchPlacehold = "搜索商品"
+        
         
     }
 
