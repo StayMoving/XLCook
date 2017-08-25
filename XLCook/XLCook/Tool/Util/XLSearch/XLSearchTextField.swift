@@ -11,26 +11,28 @@ import UIKit
 
 class XLSearchTextField: UITextField ,UITextFieldDelegate{
     
-    weak var searchInputView = UIView()
+    var searchInputView = UIView()
     
-    weak var searchImg = UIImageView()
+    var searchImg = UIImageView()
     
     var searchPlaceHoldW :CGFloat = 0.0
     
     var inputW :CGFloat = 24
     var imgSearchW :CGFloat = 12
     var imageSpace :CGFloat = 2
-    
-    
+
+   
     var searchPlacehold :NSString = "" {
+        
         didSet{
             self.placeholder = searchPlacehold as String
             self.searchPlaceHoldW = min(NSString.getStringSizeWidth(searchPlacehold, font: UIFont.systemFont(ofSize: 17), maxheigh: 24), self.width - inputW * 2)
-            //self.becomeFirstResponder()
-            //self.hiddenSearchAnimation()
+            self.becomeFirstResponder()
+            self.hiddenSearchAnimation()
             self.keyboardWillShow()
         }
     }
+
     
     var searchFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet{
@@ -58,6 +60,15 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
         self.clipsToBounds = true
         self.backgroundColor = XLLightGray_Color()
         self.tintColor = XLSystemOrange_Color()
+        
+//        self.placeholder = searchPlacehold as String
+       // self.searchPlaceHoldW = min(NSString.getStringSizeWidth(searchPlacehold, font: UIFont.systemFont(ofSize: 17), maxheigh: 24), self.width - inputW * 2)
+        //self.becomeFirstResponder()
+        //self.hiddenSearchAnimation()
+        self.keyboardWillShow()
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     //************************监听事件************************
@@ -81,14 +92,14 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
     
     //************************动态事件************************
     func searchAnimation() -> Void {
-        let inputView = UIView.init(frame: CGRect (x: 0, y: 0, width: inputW, height: inputW))
+        let inputView = UIView.init(frame: CGRect (x: 0, y: 0, width: inputW + 4, height: inputW))
         self.searchInputView = inputView
         
         let imgSearch = UIImageView.init(frame: CGRect(x: inputW - imgSearchW - imageSpace, y: (inputW - imgSearchW)/2, width: imgSearchW, height: imgSearchW))
         imgSearch.image = UIImage (named: "search")
         self.searchImg = imgSearch
         
-        self.searchInputView?.addSubview(self.searchImg!)
+        self.searchInputView.addSubview(self.searchImg)
         
         self.leftView = self.searchInputView
         self.leftViewMode = .always
@@ -103,7 +114,7 @@ class XLSearchTextField: UITextField ,UITextFieldDelegate{
         imgSearch.image = UIImage (named: "search")
         self.searchImg = imgSearch
         
-        self.searchInputView?.addSubview(self.searchImg!)
+        self.searchInputView.addSubview(self.searchImg)
         
         self.leftView = self.searchInputView
         self.leftViewMode = .always

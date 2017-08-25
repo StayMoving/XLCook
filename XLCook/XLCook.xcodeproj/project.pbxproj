@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59729EAC1F5029E60079D204 /* XLNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59729EAA1F5029E60079D204 /* XLNavigationController.swift */; };
 		59763EB91F2607300020CF50 /* XLSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EB81F2607300020CF50 /* XLSearchTextField.swift */; };
 		59763EBB1F26EB720020CF50 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EBA1F26EB720020CF50 /* UIImage+Color.swift */; };
 		59763EBD1F26F1BD0020CF50 /* NSString+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EBC1F26F1BD0020CF50 /* NSString+Float.swift */; };
+		59763EC31F28310F0020CF50 /* XLSearchSuggestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59763EC21F28310F0020CF50 /* XLSearchSuggestController.swift */; };
 		59A276B21F1E476E009534F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A276B01F1E476E009534F4 /* Main.storyboard */; };
 		59A276B41F1E476E009534F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59A276B31F1E476E009534F4 /* Assets.xcassets */; };
 		59A276B71F1E476E009534F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A276B51F1E476E009534F4 /* LaunchScreen.storyboard */; };
@@ -19,7 +21,6 @@
 		59A276D21F1EE50A009534F4 /* XLColorConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276C81F1EE50A009534F4 /* XLColorConfig.swift */; };
 		59A276D31F1EE50A009534F4 /* XLCustomConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276C91F1EE50A009534F4 /* XLCustomConfig.swift */; };
 		59A276D41F1EE50A009534F4 /* XLServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276CA1F1EE50A009534F4 /* XLServerConfig.swift */; };
-		59A276DD1F1EE5C2009534F4 /* XLNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276DC1F1EE5C2009534F4 /* XLNavigationBarView.swift */; };
 		59A276F51F1EE8AE009534F4 /* XLBasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276EB1F1EE8AE009534F4 /* XLBasicViewController.swift */; };
 		59A276F61F1EE8AE009534F4 /* XLTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276EC1F1EE8AE009534F4 /* XLTabBarController.swift */; };
 		59A276F91F1EEB28009534F4 /* XLCookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A276F81F1EEB28009534F4 /* XLCookController.swift */; };
@@ -33,9 +34,11 @@
 
 /* Begin PBXFileReference section */
 		448E7A559904B73578A1D5CB /* Pods-XLCook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XLCook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XLCook/Pods-XLCook.debug.xcconfig"; sourceTree = "<group>"; };
+		59729EAA1F5029E60079D204 /* XLNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLNavigationController.swift; sourceTree = "<group>"; };
 		59763EB81F2607300020CF50 /* XLSearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLSearchTextField.swift; sourceTree = "<group>"; };
 		59763EBA1F26EB720020CF50 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		59763EBC1F26F1BD0020CF50 /* NSString+Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Float.swift"; sourceTree = "<group>"; };
+		59763EC21F28310F0020CF50 /* XLSearchSuggestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLSearchSuggestController.swift; sourceTree = "<group>"; };
 		59A276A91F1E476E009534F4 /* XLCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A276B11F1E476E009534F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		59A276B31F1E476E009534F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,7 +50,6 @@
 		59A276C81F1EE50A009534F4 /* XLColorConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLColorConfig.swift; sourceTree = "<group>"; };
 		59A276C91F1EE50A009534F4 /* XLCustomConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLCustomConfig.swift; sourceTree = "<group>"; };
 		59A276CA1F1EE50A009534F4 /* XLServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLServerConfig.swift; sourceTree = "<group>"; };
-		59A276DC1F1EE5C2009534F4 /* XLNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLNavigationBarView.swift; sourceTree = "<group>"; };
 		59A276EB1F1EE8AE009534F4 /* XLBasicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBasicViewController.swift; sourceTree = "<group>"; };
 		59A276EC1F1EE8AE009534F4 /* XLTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLTabBarController.swift; sourceTree = "<group>"; };
 		59A276F71F1EE930009534F4 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -147,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				59A277291F21D792009534F4 /* XLSearch */,
-				59A276DC1F1EE5C2009534F4 /* XLNavigationBarView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -287,6 +288,7 @@
 			children = (
 				59A276EB1F1EE8AE009534F4 /* XLBasicViewController.swift */,
 				59A276EC1F1EE8AE009534F4 /* XLTabBarController.swift */,
+				59729EAA1F5029E60079D204 /* XLNavigationController.swift */,
 			);
 			path = "Main(主)";
 			sourceTree = "<group>";
@@ -391,6 +393,7 @@
 			children = (
 				59763EB81F2607300020CF50 /* XLSearchTextField.swift */,
 				59A2772A1F21D7D6009534F4 /* XLSearchViewController.swift */,
+				59763EC21F28310F0020CF50 /* XLSearchSuggestController.swift */,
 			);
 			path = XLSearch;
 			sourceTree = "<group>";
@@ -540,9 +543,11 @@
 				59763EBD1F26F1BD0020CF50 /* NSString+Float.swift in Sources */,
 				59A276D41F1EE50A009534F4 /* XLServerConfig.swift in Sources */,
 				59A276D31F1EE50A009534F4 /* XLCustomConfig.swift in Sources */,
+				59729EAC1F5029E60079D204 /* XLNavigationController.swift in Sources */,
 				59A276D21F1EE50A009534F4 /* XLColorConfig.swift in Sources */,
 				59A276F51F1EE8AE009534F4 /* XLBasicViewController.swift in Sources */,
 				59A276D11F1EE50A009534F4 /* UIView+Frame.swift in Sources */,
+				59763EC31F28310F0020CF50 /* XLSearchSuggestController.swift in Sources */,
 				59763EB91F2607300020CF50 /* XLSearchTextField.swift in Sources */,
 				59A276F91F1EEB28009534F4 /* XLCookController.swift in Sources */,
 				59A277011F1EEB8D009534F4 /* XLMineController.swift in Sources */,
@@ -551,7 +556,6 @@
 				59A276CD1F1EE50A009534F4 /* AppDelegate.swift in Sources */,
 				59A276FF1F1EEB7F009534F4 /* XLMsgController.swift in Sources */,
 				59A2772B1F21D7D6009534F4 /* XLSearchViewController.swift in Sources */,
-				59A276DD1F1EE5C2009534F4 /* XLNavigationBarView.swift in Sources */,
 				59A276F61F1EE8AE009534F4 /* XLTabBarController.swift in Sources */,
 				59A276FB1F1EEB4F009534F4 /* XLFairController.swift in Sources */,
 				59763EBB1F26EB720020CF50 /* UIImage+Color.swift in Sources */,

@@ -12,8 +12,8 @@ class XLMsgController: XLBasicViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchTF.isHidden = true
-        self.navTitle = "信箱"
+
+        self.title = "信箱"
     }
 
     override func didReceiveMemoryWarning() {

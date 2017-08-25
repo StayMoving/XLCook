@@ -7,18 +7,91 @@
 //
 
 import UIKit
+import Foundation
 
-class XLSearchSuggestController: UITableViewController {
+typealias XLCellSelectedBlock = (IndexPath) ->Void
 
+@objc protocol XLSearchSuggestionViewDataSource : NSObjectProtocol ,UITableViewDataSource {
+    
+   func searchSuggestionView(_ searchSuggestionView :UITableView ,cellOfRowAt indexPath : IndexPath) -> UITableViewCell
+    
+   func searchSuggestionView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    
+   @objc func numberOfSectionsInsearchSuggestionView(_ tableView: UITableView) -> Int
+   
+   @objc optional func searchSuggestionView(_ searchSuggestionView :UITableView ,heightForRowAt indexPath : IndexPath) -> CGFloat
+    
+}
+
+
+class XLSearchSuggestController: UITableViewController{
+
+    weak var dataSource :XLSearchSuggestionViewDataSource? = nil
+
+    var searchSuggestions :NSMutableArray = [String]() as! NSMutableArray
+    
+    
+    var keyboardDidShow :Bool = false
+    
+    var cellSelectedBlock :XLCellSelectedBlock?
+    
+    var originalContentInsetWhenKeyboardShow :UIEdgeInsets = .zero
+    var originalContentInsetWhenKeyboardHidden :UIEdgeInsets = .zero
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.separatorStyle = .none
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if self.keyboardDidShow {
+            self.originalContentInsetWhenKeyboardShow = self.tableView.contentInset
+        }else{
+        self.originalContentInsetWhenKeyboardHidden = self.tableView.contentInset
+        }
+        
+    }
+    
+    // MARK: 键盘响应事件
+    func keyboardWillShow(_ noti :NSNotification) -> Void {
+        self.keyboardDidShow = true
+        self.setSearchSuggestions(searchSuggestions:self.searchSuggestions as! Array<String>)
+    }
+    
+    
+    func keyboardWillHide(_ noti :NSNotification) -> Void {
+        self.keyboardDidShow = false
+        self.originalContentInsetWhenKeyboardHidden = UIEdgeInsetsMake(-30, 0, 30, 0)
+        self .setSearchSuggestions(searchSuggestions: self.searchSuggestions as! Array<String>)
+    }
+    
+    
+    // MARK : setter
+    func setSearchSuggestions(searchSuggestions :Array<String>) -> Void {
+        self.searchSuggestions = searchSuggestions as! NSMutableArray
+        self.tableView.reloadData()
+        
+        if self.keyboardDidShow && !UIEdgeInsetsEqualToEdgeInsets(self.originalContentInsetWhenKeyboardShow, .zero) && !UIEdgeInsetsEqualToEdgeInsets(self.originalContentInsetWhenKeyboardShow, UIEdgeInsetsMake(-30, 0, 30 - 64, 0)){
+            self.tableView.contentInset = self.originalContentInsetWhenKeyboardShow
+        }
+        else if !self.keyboardDidShow && !UIEdgeInsetsEqualToEdgeInsets(self.originalContentInsetWhenKeyboardShow, .zero) && !UIEdgeInsetsEqualToEdgeInsets(self.originalContentInsetWhenKeyboardShow, UIEdgeInsetsMake(-30, 0, 30 - 64, 0))
+        {
+            self.tableView.contentInset = self.originalContentInsetWhenKeyboardHidden
+        }
+        self.tableView.contentOffset = CGPoint (x: 0, y: -self.tableView.contentInset.top)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -28,68 +101,63 @@ class XLSearchSuggestController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+        if (self.dataSource != nil) {
+            return (self.dataSource?.numberOfSectionsInsearchSuggestionView(tableView))!
+        }
+        
+        return 1
     }
+    
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        if (self.dataSource != nil) {
+            
+            let numOfCount = self.dataSource?.searchSuggestionView(tableView, numberOfRowsInSection: section)
+            
+            return numOfCount!
+        }
+        
+        return self.searchSuggestions.count
     }
 
-    /*
+   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        
+        if self.dataSource != nil {
+            let cell = self.dataSource?.searchSuggestionView(tableView, cellOfRowAt: indexPath)
+            return cell!
+        }
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier")
+        
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "reuseIdentifier")
+            cell?.textLabel?.textColor = XLSystemGray_Color()
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 14)
+            cell?.backgroundColor = UIColor.clear
+            
+        }
+        cell?.textLabel?.text = self.searchSuggestions[indexPath.row] as? String;
+        return cell!
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (self.dataSource != nil){
+         return (self.dataSource?.searchSuggestionView!(tableView, heightForRowAt: indexPath))!
+        }
+        
+        return 44
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if (self.cellSelectedBlock != nil) {    
+            self.cellSelectedBlock!(indexPath)
+           
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

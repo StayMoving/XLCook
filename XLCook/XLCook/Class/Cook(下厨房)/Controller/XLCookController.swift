@@ -12,8 +12,14 @@ class XLCookController: XLBasicViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.titleView = navBarView
 
-        // Do any additional setup after loading the view.
+        self.leftBtn.setImage(UIImage (named: "creatrecipeicon~iphone"), for: .normal)
+        self.leftBtn.setImage(UIImage (named: "creatrecipeicon~iphone"), for: .highlighted)
+        
+        self.rightBtn.setImage(UIImage (named: "buylistButtonImage~iphone"), for: .normal)
+        self.rightBtn.setImage(UIImage (named: "buylistButtonImage~iphone"), for: .highlighted)
     }
 
     override func didReceiveMemoryWarning() {

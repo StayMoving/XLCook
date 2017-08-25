@@ -52,7 +52,7 @@ class XLTabBarController: UITabBarController {
         viewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName : XLSystemGray_Color()], for: .normal)
         viewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName :XLSystemOrange_Color()], for: .selected)
 
-        self.addChildViewController(UINavigationController.init(rootViewController: viewController))
+        self.addChildViewController(XLNavigationController.init(rootViewController: viewController))
     }
     
 

@@ -8,14 +8,43 @@
 
 import UIKit
 
-class XLNavigationController: UINavigationController {
+class XLNavigationController: UINavigationController ,UINavigationControllerDelegate{
 
+    var backBtn = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.delegate = self
         // Do any additional setup after loading the view.
+        
+        let backBtn = UIButton()
+        self.backBtn = backBtn
+        
+        backBtn.frame = CGRect (x: 0, y: 0, width: 30, height: 30)
+        backBtn.setImage(UIImage (named: "backStretchBackgroundNormal~iphone"), for: .normal)
+        backBtn.setImage(UIImage (named: "backStretchBackgroundNormal~iphone"), for: .highlighted)
+        backBtn.addTarget(self, action: #selector(backBtnClick(_:)), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: backBtn)
+        backBtn.isHidden = true
+
     }
 
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool)
+    {
+        if navigationController.viewControllers.count > 1 {
+            self.backBtn.isHidden = false
+        }else
+        {
+            backBtn.isHidden = true
+        }
+    }
+    
+    func backBtnClick(_ sender:UIButton) -> Void {
+        self.navigationController!.popViewController(animated: true)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

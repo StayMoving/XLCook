@@ -12,8 +12,8 @@ class XLCollectController: XLBasicViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchTF.isHidden = true
-        self.navTitle = "收藏"
+
+        self.title = "收藏"
         
     }
 
